@@ -1,57 +1,109 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Image, Cloud, BookOpen, Camera, Star } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Access Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      padding: 20px;
+      background: #343a40;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: #f1f1f1;
+      font-size: 14px;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>🌙 Quick Access Portal</header>
 
-export default function QuickAccessPage() {
-  const links = [
-    { name: "Gmail", url: "https://mail.google.com", icon: Mail },
-    { name: "Google Photos", url: "https://photos.google.com", icon: Image },
-    { name: "OneDrive", url: "https://onedrive.live.com", icon: Cloud },
-    { name: "Pinterest", url: "https://www.pinterest.com", icon: Camera },
-    { name: "Physics Wallah", url: "https://www.pw.live", icon: BookOpen },
-    { name: "Custom", url: "https://example.com", icon: Star },
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center 
-      bg-gradient-to-br from-[#1c1b29] via-[#2d2438] to-[#463a54] 
-      text-white p-6">
-      
-      {/* Heading */}
-      <h1 className="text-3xl font-bold mb-8 tracking-wide text-[#f2e9e4] drop-shadow-lg">
-        🌙 Quick Access Portal
-      </h1>
-
-      {/* Grid of links */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl w-full">
-        {links.map((link) => (
-          <Card
-            key={link.name}
-            className="bg-[#2e294e]/70 backdrop-blur-lg border border-[#a786df]/40 
-              shadow-xl hover:shadow-2xl hover:scale-105 
-              transition-transform duration-200 rounded-2xl"
-          >
-            <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
-              {/* Icon */}
-              <link.icon className="w-10 h-10 text-[#d0a6f7]" />
-              {/* Link */}
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg font-medium text-[#f7f4f9] hover:text-[#d0a6f7] transition-colors"
-              >
-                {link.name}
-              </a>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Footer */}
-      <footer className="mt-12 text-sm text-[#cbbfdc]">
-        Inspired by your Edge Full Moon theme 🌌
-      </footer>
+  <div class="grid">
+    <div class="card">
+      <a href="https://mail.google.com" target="_blank">
+        <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" alt="Gmail">
+        <div>Gmail</div>
+      </a>
     </div>
-  );
-}
+
+    <div class="card">
+      <a href="https://photos.google.com" target="_blank">
+        <img src="https://www.svgrepo.com/show/475656/photo.svg" alt="Google Photos">
+        <div>Google Photos</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://onedrive.live.com" target="_blank">
+        <img src="https://www.svgrepo.com/show/452045/onedrive.svg" alt="OneDrive">
+        <div>OneDrive</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.pinterest.com" target="_blank">
+        <img src="https://www.svgrepo.com/show/452229/pinterest-1.svg" alt="Pinterest">
+        <div>Pinterest</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.pw.live" target="_blank">
+        <img src="https://www.svgrepo.com/show/452234/book.svg" alt="Physics Wallah">
+        <div>Physics Wallah</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://example.com" target="_blank">
+        <img src="https://www.svgrepo.com/show/452030/star.svg" alt="Custom">
+        <div>Custom</div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    Inspired by your Edge Full Moon theme 🌑
+  </footer>
+</body>
+</html>
