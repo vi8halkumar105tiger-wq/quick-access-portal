@@ -1,0 +1,57 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Image, Cloud, BookOpen, Camera, Star } from "lucide-react";
+
+export default function QuickAccessPage() {
+  const links = [
+    { name: "Gmail", url: "https://mail.google.com", icon: Mail },
+    { name: "Google Photos", url: "https://photos.google.com", icon: Image },
+    { name: "OneDrive", url: "https://onedrive.live.com", icon: Cloud },
+    { name: "Pinterest", url: "https://www.pinterest.com", icon: Camera },
+    { name: "Physics Wallah", url: "https://www.pw.live", icon: BookOpen },
+    { name: "Custom", url: "https://example.com", icon: Star },
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center 
+      bg-gradient-to-br from-[#1c1b29] via-[#2d2438] to-[#463a54] 
+      text-white p-6">
+      
+      {/* Heading */}
+      <h1 className="text-3xl font-bold mb-8 tracking-wide text-[#f2e9e4] drop-shadow-lg">
+        🌙 Quick Access Portal
+      </h1>
+
+      {/* Grid of links */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl w-full">
+        {links.map((link) => (
+          <Card
+            key={link.name}
+            className="bg-[#2e294e]/70 backdrop-blur-lg border border-[#a786df]/40 
+              shadow-xl hover:shadow-2xl hover:scale-105 
+              transition-transform duration-200 rounded-2xl"
+          >
+            <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
+              {/* Icon */}
+              <link.icon className="w-10 h-10 text-[#d0a6f7]" />
+              {/* Link */}
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-medium text-[#f7f4f9] hover:text-[#d0a6f7] transition-colors"
+              >
+                {link.name}
+              </a>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-12 text-sm text-[#cbbfdc]">
+        Inspired by your Edge Full Moon theme 🌌
+      </footer>
+    </div>
+  );
+}
