@@ -1,109 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quick Access Portal</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
       margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
       padding: 20px;
-      background: #343a40;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
-      padding: 30px;
+    .container {
       max-width: 800px;
       margin: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 2rem;
     }
     .card {
       background: white;
       border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       padding: 20px;
-      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      margin-bottom: 20px;
     }
-    .card:hover {
-      transform: scale(1.05);
-    }
-    .card img {
-      width: 40px;
-      height: 40px;
+    .input-group {
+      display: flex;
+      gap: 10px;
       margin-bottom: 10px;
     }
-    footer {
-      margin-top: 40px;
-      padding: 15px;
-      background: #f1f1f1;
-      font-size: 14px;
+    input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
     }
-    a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
+    button {
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #2563eb;
+      color: white;
+    }
+    button.secondary {
+      background-color: #e2e8f0;
+      color: #1e293b;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tip {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    ol {
+      padding-left: 20px;
     }
   </style>
 </head>
 <body>
-  <header>🌙 Quick Access Portal</header>
+  <div class="container">
+    <h1>Quick Access Portal</h1>
+    <p>One-tap Google search, image search, and Gmail. Add this page to your home screen for instant access.</p>
 
-  <div class="grid">
+    <!-- Search Card -->
     <div class="card">
-      <a href="https://mail.google.com" target="_blank">
-        <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" alt="Gmail">
-        <div>Gmail</div>
-      </a>
+      <div class="input-group">
+        <input id="searchInput" type="text" placeholder="Type to search Google (press S to focus)" />
+        <button onclick="handleGoogleSearch()">Search</button>
+        <button class="secondary" onclick="handleLucky()">I'm Feeling Lucky</button>
+      </div>
+      <div class="tip">Tip: Press <kbd>Ctrl/⌘ + G</kbd> to open Gmail.</div>
     </div>
 
+    <!-- Image Search Card -->
     <div class="card">
-      <a href="https://photos.google.com" target="_blank">
-        <img src="https://www.svgrepo.com/show/475656/photo.svg" alt="Google Photos">
-        <div>Google Photos</div>
-      </a>
+      <h2>Search by Image</h2>
+      <div class="grid">
+        <button onclick="openNew('https://lens.google.com/upload')">Upload → Google Lens</button>
+        <button class="secondary" onclick="openNew('https://www.bing.com/visualsearch')">Bing Visual Search</button>
+      </div>
+      <div class="input-group" style="margin-top: 10px;">
+        <input id="imgUrlInput" type="text" placeholder="Paste image URL to reverse search via Google Lens" />
+        <button onclick="handleImageByUrl()">Search by URL</button>
+      </div>
+      <div class="tip">Note: Uploads happen on Google/Bing pages for security reasons.</div>
     </div>
 
+    <!-- One-Tap Apps -->
     <div class="card">
-      <a href="https://onedrive.live.com" target="_blank">
-        <img src="https://www.svgrepo.com/show/452045/onedrive.svg" alt="OneDrive">
-        <div>OneDrive</div>
-      </a>
+      <h2>One‑Tap Apps</h2>
+      <div class="grid">
+        <button onclick="openNew('https://mail.google.com/')">Gmail</button>
+        <button class="secondary" onclick="openNew('https://www.google.com/')">Google</button>
+        <button onclick="openNew('https://drive.google.com/')">Drive</button>
+        <button class="secondary" onclick="openNew('https://www.youtube.com/')">YouTube</button>
+        <button onclick="openNew('https://maps.google.com/')">Maps</button>
+        <button class="secondary" onclick="openNew('https://github.com/')">GitHub</button>
+      </div>
     </div>
 
+    <!-- Install Instructions -->
     <div class="card">
-      <a href="https://www.pinterest.com" target="_blank">
-        <img src="https://www.svgrepo.com/show/452229/pinterest-1.svg" alt="Pinterest">
-        <div>Pinterest</div>
-      </a>
-    </div>
-
-    <div class="card">
-      <a href="https://www.pw.live" target="_blank">
-        <img src="https://www.svgrepo.com/show/452234/book.svg" alt="Physics Wallah">
-        <div>Physics Wallah</div>
-      </a>
-    </div>
-
-    <div class="card">
-      <a href="https://example.com" target="_blank">
-        <img src="https://www.svgrepo.com/show/452030/star.svg" alt="Custom">
-        <div>Custom</div>
-      </a>
+      <h3>Make it 1‑tap on your phone</h3>
+      <ol>
+        <li>Open this page in Chrome on your phone.</li>
+        <li>Tap the menu (⋮) → <strong>Add to Home screen</strong>.</li>
+        <li>Now you can launch Gmail, Google, or reverse image search in one tap.</li>
+      </ol>
     </div>
   </div>
 
-  <footer>
-    Inspired by your Edge Full Moon theme 🌑
-  </footer>
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const imgUrlInput = document.getElementById("imgUrlInput");
+
+    function openNew(url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function handleGoogleSearch() {
+      const query = searchInput.value.trim();
+      if (query) {
+        openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
+      }
+    }
+
+    function handleLucky() {
+      const query = searchInput.value.trim();
+      if (query) {
+        openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=I`);
+      }
+    }
+
+    function handleImageByUrl() {
+      const url = imgUrlInput.value.trim();
+      if (url) {
+        openNew(`https://lens.google.com/uploadbyurl?url=${encodeURIComponent(url)}`);
+      }
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "s") {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key.toLowerCase() === "g" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        openNew("https://mail.google.com/");
+      }
+    });
+  </script>
 </body>
 </html>
