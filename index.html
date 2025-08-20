@@ -7,87 +7,177 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    html, body {
-      background: linear-gradient(to bottom right, #f1f5f9, #e2e8f0); /* soft slate gradient */
-      min-height: 100%;
+    body {
+      background: radial-gradient(circle at top left, #000000, #000000, #000000);
     }
     ::selection {
-      background-color: #cbd5e1;
+      background-color: #64748b;
+      color: #fff;
     }
   </style>
 </head>
 <body class="text-slate-800 font-sans antialiased">
-  <div class="max-w-3xl mx-auto p-6 space-y-6">
-    <!-- Header -->
-    <header class="text-center">
-      <h1 class="text-2xl font-semibold text-slate-700">Quick Access</h1>
-      <p class="text-sm text-slate-500">Minimal, fast, and feels like part of your browser.</p>
-    </header>
+  <div class="max-w-3xl mx-auto p-6 space-y-8">
+    <header class="text-center space-y-1">
+  <h1 class="text-3xl font-semibold text-white tracking-tight">⚡ Quick Access</h1>
+  <p class="text-sm text-white">Your fast lane to Google, Gmail, Lens & more.</p>
+</header>
 
     <!-- Search Box -->
-    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4 space-y-3">
+    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6 space-y-4">
       <div class="flex gap-2">
-        <input id="searchInput" type="text" placeholder="Search Google..." class="flex-1 h-10 px-3 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-300" />
-        <button onclick="handleGoogleSearch()" class="px-4 h-10 bg-slate-700 text-white rounded-md text-sm flex items-center gap-2 hover:bg-slate-800">
+        <input id="searchInput" type="text" placeholder="Search Google..." 
+               class="flex-1 h-11 px-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-400/50 transition" />
+        <button onclick="handleGoogleSearch()" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
           <i data-lucide="search" class="w-4 h-4"></i> Search
         </button>
-        <button onclick="handleLucky()" class="px-4 h-10 bg-slate-100 text-slate-700 rounded-md text-sm flex items-center gap-2 hover:bg-slate-200">
-          <i data-lucide="chrome" class="w-4 h-4"></i> I'm Feeling Lucky
+        <button onclick="handleLucky()" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+          <i data-lucide="sparkles" class="w-4 h-4"></i> Lucky
+        </button>
       </div>
-      <div class="text-xs text-slate-400">Shortcut: Press <kbd class="px-1 py-0.5 bg-slate-200 rounded">S</kbd> to focus</div>
+      <p class="text-xs text-slate-400">Press <kbd class="px-1.5 py-0.5 bg-slate-200 rounded">S</kbd> to focus instantly.</p>
     </div>
 
-    <!-- Image Upload Portal -->
-    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4 space-y-4">
-      <div class="flex items-center gap-2">
-        <i data-lucide="camera" class="w-5 h-5 text-slate-600"></i>
-        <h2 class="text-sm font-medium text-slate-600">Search by Image</h2>
+    <!-- Image Search -->
+    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6 space-y-5">
+      <div class="flex items-center gap-2 text-slate-600">
+        <i data-lucide="camera" class="w-5 h-5"></i>
+        <h2 class="text-sm font-semibold">Search by Image</h2>
       </div>
       <div class="grid sm:grid-cols-2 gap-3">
-        <button onclick="openNew('https://lens.google.com/upload')" class="h-10 bg-slate-700 text-white rounded-md text-sm flex items-center justify-center gap-2 hover:bg-slate-800">
-          <i data-lucide="upload" class="w-4 h-4"></i> Upload to Google Lens
+        <button onclick="openNew('https://lens.google.com/upload')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
+          <i data-lucide="upload" class="w-4 h-4"></i> Google Lens
         </button>
-        <button onclick="openNew('https://www.bing.com/visualsearch')" class="h-10 bg-slate-100 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-slate-200">
-          <i data-lucide="image" class="w-4 h-4"></i> Bing Visual Search
+        <button onclick="openNew('https://www.bing.com/visualsearch')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+          <i data-lucide="image" class="w-4 h-4"></i> Bing Visual
         </button>
       </div>
       <div class="flex gap-2">
-        <input id="imgUrlInput" type="text" placeholder="Paste image URL..." class="flex-1 h-10 px-3 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-300" />
-        <button onclick="handleImageByUrl()" class="px-4 h-10 bg-slate-700 text-white rounded-md text-sm flex items-center gap-2 hover:bg-slate-800">
-          <i data-lucide="link" class="w-4 h-4"></i> Search by URL
+        <input id="imgUrlInput" type="text" placeholder="Paste image URL..." 
+               class="flex-1 h-11 px-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-400/50 transition" />
+        <button onclick="handleImageByUrl()" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
+          <i data-lucide="link" class="w-4 h-4"></i> Search URL
         </button>
       </div>
-      <p class="text-xs text-slate-400">Note: Upload opens in a new tab for privacy and security.</p>
+      <p class="text-xs text-slate-400">Note: Image uploads always open in a new tab for privacy.</p>
     </div>
 
     <!-- Quick Links -->
-    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
-      <h2 class="text-sm font-medium text-slate-600 mb-2">Quick Links</h2>
+    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6">
+      <h2 class="text-sm font-semibold text-slate-600 mb-3">Quick Links</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <button onclick="openNew('https://mail.google.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://mail.google.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="mail" class="w-4 h-4"></i> Gmail
         </button>
-        <button onclick="openNew('https://www.google.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://www.google.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="search" class="w-4 h-4"></i> Google
         </button>
-        <button onclick="openNew('https://drive.google.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://drive.google.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="hard-drive" class="w-4 h-4"></i> Drive
         </button>
-        <button onclick="openNew('https://www.youtube.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://www.youtube.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
         </button>
-        <button onclick="openNew('https://maps.google.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://maps.google.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="map-pin" class="w-4 h-4"></i> Maps
         </button>
-        <button onclick="openNew('https://github.com/')" class="h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm flex items-center justify-center gap-2">
+        <button onclick="openNew('https://github.com/')" 
+                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
           <i data-lucide="github" class="w-4 h-4"></i> GitHub
         </button>
+
+    <button onclick="openNew('https://www.pinterest.com/')" 
+            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+      <i data-lucide="image" class="w-4 h-4"></i> Pinterest
+    </button>
+    <button onclick="openNew('https://outlook.live.com/')" 
+            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+      <i data-lucide="inbox" class="w-4 h-4"></i> Outlook
+    </button>
+    <button onclick="openNew('https://onedrive.live.com/')" 
+        class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="cloud" class="w-4 h-4"></i> OneDrive
+</button>
+    <button onclick="openNew('https://chat.openai.com/')" 
+            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+      <i data-lucide="message-square" class="w-4 h-4"></i> ChatGPT
+    </button>
+    <button onclick="openNew('https://copilot.microsoft.com/')" 
+            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+      <i data-lucide="sparkles" class="w-4 h-4"></i> Copilot
+    </button>
+
+      <!-- PW -->
+<button onclick="openNew('https://www.pw.live/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="book-open" class="w-4 h-4"></i> PW
+</button>
+
+<!-- Perplexity -->
+<button onclick="openNew('https://www.perplexity.ai/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="bot" class="w-4 h-4"></i> Perplexity
+</button>
+
+<!-- eKalyan -->
+<button onclick="openNew('https://ekalyan.cgg.gov.in/studentLogin.do?studLoginType=pms')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="graduation-cap" class="w-4 h-4"></i> eKalyan
+</button>
+
+<!-- SmallPDF -->
+<button onclick="openNew('https://smallpdf.com/#r=app')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="file-text" class="w-4 h-4"></i> SmallPDF
+</button>
+
+<!-- 10015.io -->
+<button onclick="openNew('https://10015.io/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="layers" class="w-4 h-4"></i> 10015.io
+</button>
+
+<!-- Pixabay -->
+<button onclick="openNew('https://pixabay.com/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="camera" class="w-4 h-4"></i> Pixabay
+</button>
+
+<!-- Survey of India -->
+<button onclick="openNew('https://surveyofindia.gov.in/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="map" class="w-4 h-4"></i> Survey of India
+</button>
+
+<!-- Indian Law System -->
+<button onclick="openNew('https://www.perplexity.ai/spaces/indian-law-system-WTpMpNwMQ3qwiEwuY6ThxA')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="gavel" class="w-4 h-4"></i> Indian Law
+</button>
+
+<!-- Google Scholar -->
+<button onclick="openNew('https://scholar.google.com/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="book" class="w-4 h-4"></i> Scholar
+</button>
+
+
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="text-center text-xs text-slate-400 pt-4">
-      <p>Designed to blend into your browser. Add to home screen for 1‑tap access.</p>
+    <footer class="text-center text-xs text-slate-400 pt-6">
+      <p>Made with ♥ | Save as a PWA for 1-tap browser speed dial.</p>
     </footer>
   </div>
 
@@ -104,7 +194,7 @@
     }
     
     function handleLucky() {
-      const query = searchInput.value.trim();
+      const query = document.getElementById("searchInput").value.trim();
       if (query) openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=I`);
     }
 
