@@ -171,6 +171,37 @@
   <i data-lucide="book" class="w-4 h-4"></i> Scholar
 </button>
 
+        <!-- MSN Watch -->
+<button onclick="openNew('https://www.msn.com/en-in/video?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=9')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="tv" class="w-4 h-4 text-indigo-600"></i> Watch
+</button>
+
+<!-- MSN Weather -->
+<button onclick="openNew('https://www.msn.com/en-in/weather/forecast/in-Hazaribag,Jharkhand?ocid=edgntpruby&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="cloud-sun" class="w-4 h-4 text-sky-500"></i> Weather
+</button>
+
+<!-- MSN Finance -->
+<button onclick="openNew('https://www.msn.com/en-in/money?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=11&id=ahkucw')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="dollar-sign" class="w-4 h-4 text-green-700"></i> Finance
+</button>
+
+<!-- MSN Games -->
+<button onclick="openNew('https://www.msn.com/en-in/play?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=12')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="gamepad-2" class="w-4 h-4 text-orange-600"></i> MSN Games
+</button>
+
+<!-- Poki -->
+<button onclick="openNew('https://poki.com/')" 
+  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+  <i data-lucide="gamepad" class="w-4 h-4 text-purple-600"></i> Poki
+</button>
+
+
 
       </div>
     </div>
@@ -194,9 +225,12 @@
     }
     
     function handleLucky() {
-      const query = document.getElementById("searchInput").value.trim();
-      if (query) openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=I`);
-    }
+  const query = document.getElementById("googleSearch").value.trim();
+  if (query) {
+    openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}&sourceid=navclient&btnI=1`);
+  }
+}
+
 
     function handleImageByUrl() {
       const url = document.getElementById("imgUrlInput").value.trim();
@@ -212,3 +246,4 @@
   </script>
 </body>
 </html>
+
