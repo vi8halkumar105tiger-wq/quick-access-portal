@@ -2,247 +2,303 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quick Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickHub — App & Web Launcher</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
+    :root {
+      --bg: #0b0f16;
+      --panel: rgba(255,255,255,0.08);
+      --panel-border: rgba(255,255,255,0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+    }
     body {
-      background: radial-gradient(circle at top left, #000000, #000000, #000000);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(96,165,250,0.25), transparent 40%),
+        radial-gradient(1200px 800px at 110% 10%, rgba(99,102,241,0.25), transparent 40%),
+        var(--bg);
+      color: var(--text);
     }
-    ::selection {
-      background-color: #64748b;
-      color: #fff;
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      backdrop-filter: blur(8px);
     }
+    .card { transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-2px) scale(1.01); }
+    .kbd { padding: 1px 6px; border-radius: 6px; background: rgba(148,163,184,.15); border: 1px solid rgba(148,163,184,.25); }
   </style>
 </head>
-<body class="text-slate-800 font-sans antialiased">
-  <div class="max-w-3xl mx-auto p-6 space-y-8">
-    <header class="text-center space-y-1">
-  <h1 class="text-3xl font-semibold text-white tracking-tight">⚡ Quick Access</h1>
-  <p class="text-sm text-white">Your fast lane to Google, Gmail, Lens & more.</p>
-</header>
-
-    <!-- Search Box -->
-    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6 space-y-4">
-      <div class="flex gap-2">
-        <input id="searchInput" type="text" placeholder="Search Google..." 
-               class="flex-1 h-11 px-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-400/50 transition" />
-        <button onclick="handleGoogleSearch()" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
-          <i data-lucide="search" class="w-4 h-4"></i> Search
-        </button>
-        <button onclick="handleLucky()" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="sparkles" class="w-4 h-4"></i> Lucky
-        </button>
+<body class="min-h-screen flex flex-col antialiased">
+    <!-- Header -->
+  <header class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-8 pb-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center shadow-lg">
+          <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl font-semibold tracking-tight">QuickHub</h1>
+          <p class="text-sm text-[var(--muted)]">Your fast lane to apps, search, and tools</p>
+        </div>
       </div>
-      <p class="text-xs text-slate-400">Press <kbd class="px-1.5 py-0.5 bg-slate-200 rounded">S</kbd> to focus instantly.</p>
+      <!-- No theme toggle here -->
+      <div class="opacity-0 pointer-events-none select-none">.</div>
     </div>
+  </header>
 
-    <!-- Image Search -->
-    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6 space-y-5">
-      <div class="flex items-center gap-2 text-slate-600">
+  <!-- Hero Apps -->
+ <!-- <section class="max-w-6xl w-full mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <a href="login.php" class="card relative overflow-hidden rounded-2xl p-6 text-white shadow-xl glass"
+         style="background: linear-gradient(135deg, #2563eb, #1e40af);">
+        <div class="absolute -top-16 -right-16 w-56 h-56 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="relative z-10 flex items-center gap-4">
+          <div class="bg-white/20 rounded-xl p-4">
+            <span class="text-4xl">💰</span>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold">Money Tracker</h2>
+            <p class="text-white/80 text-sm">Manage expenses, income, and reports</p>
+          </div>
+        </div>
+      </a>
+      
+      <a href="/studytracker/index.php" class="card relative overflow-hidden rounded-2xl p-6 text-white shadow-xl glass"
+         style="background: linear-gradient(135deg, #059669, #065f46);">
+        <div class="absolute -top-16 -right-16 w-56 h-56 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="relative z-10 flex items-center gap-4">
+          <div class="bg-white/20 rounded-xl p-4">
+            <span class="text-4xl">📚</span>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold">Study Tracker</h2>
+            <p class="text-white/80 text-sm">Sessions, homework, progress overview</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>-->
+
+  <!-- Search -->
+  <section class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-8">
+    <div class="glass rounded-2xl p-5 shadow-lg">
+      <div class="flex flex-col md:flex-row gap-3">
+        <div class="flex items-center gap-2">
+          <label class="text-sm text-[var(--muted)]">Engine</label>
+          <select id="engine" class="glass border rounded-lg px-3 py-2 text-sm">
+            <option value="google">Google</option>
+            <option value="bing">Bing</option>
+            <option value="youtube">YouTube</option>
+            <option value="wikipedia">Wikipedia</option>
+          </select>
+        </div>
+        <div class="flex-1 flex gap-2">
+          <input id="searchInput" type="text" placeholder="Type to search..."
+                 class="flex-1 glass border rounded-lg px-3 py-2 text-sm" autocomplete="off"/>
+          <button id="searchBtn"
+                  class="glass px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 hover:shadow-md">
+            <i data-lucide="search" class="w-4 h-4"></i> Search
+          </button>
+          <button id="luckyBtn"
+                  class="glass px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 hover:shadow-md">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> Lucky
+          </button>
+        </div>
+      </div>
+      <p class="mt-2 text-xs text-[var(--muted)]">Shortcuts: <span class="kbd">S</span>/<span class="kbd">/</span> focus, <span class="kbd">G</span> Gmail, <span class="kbd">Y</span> YouTube, <span class="kbd">M</span> Maps,<span class="kbd">P</span> Pw</p>
+    </div>
+  </section>
+
+  <!-- Image Search -->
+  <section class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-6">
+    <div class="glass rounded-2xl p-5 shadow-lg">
+      <div class="flex items-center gap-2 text-[var(--muted)] mb-3">
         <i data-lucide="camera" class="w-5 h-5"></i>
-        <h2 class="text-sm font-semibold">Search by Image</h2>
+        <h3 class="text-sm font-semibold">Search by image</h3>
       </div>
       <div class="grid sm:grid-cols-2 gap-3">
-        <button onclick="openNew('https://lens.google.com/upload')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
+        <button class="glass px-4 py-2 rounded-lg text-sm flex items-center justify-center gap-2 hover:shadow-md"
+                onclick="openNew('https://lens.google.com/upload')">
           <i data-lucide="upload" class="w-4 h-4"></i> Google Lens
         </button>
-        <button onclick="openNew('https://www.bing.com/visualsearch')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
+        <button class="glass px-4 py-2 rounded-lg text-sm flex items-center justify-center gap-2 hover:shadow-md"
+                onclick="openNew('https://www.bing.com/visualsearch')">
           <i data-lucide="image" class="w-4 h-4"></i> Bing Visual
         </button>
       </div>
-      <div class="flex gap-2">
-        <input id="imgUrlInput" type="text" placeholder="Paste image URL..." 
-               class="flex-1 h-11 px-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-400/50 transition" />
-        <button onclick="handleImageByUrl()" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-800 text-white hover:bg-slate-900 active:scale-95 transition">
+      <div class="flex gap-2 mt-3">
+        <input id="imgUrlInput" type="text" placeholder="Paste image URL..."
+               class="flex-1 glass border rounded-lg px-3 py-2 text-sm"/>
+        <button class="glass px-4 rounded-lg text-sm flex items-center justify-center gap-2 hover:shadow-md"
+                onclick="handleImageByUrl()">
           <i data-lucide="link" class="w-4 h-4"></i> Search URL
         </button>
       </div>
-      <p class="text-xs text-slate-400">Note: Image uploads always open in a new tab for privacy.</p>
     </div>
+  </section>
 
-    <!-- Quick Links -->
-    <div class="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl shadow-md hover:shadow-lg transition p-6">
-      <h2 class="text-sm font-semibold text-slate-600 mb-3">Quick Links</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <button onclick="openNew('https://mail.google.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="mail" class="w-4 h-4"></i> Gmail
-        </button>
-        <button onclick="openNew('https://www.google.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="search" class="w-4 h-4"></i> Google
-        </button>
-        <button onclick="openNew('https://drive.google.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="hard-drive" class="w-4 h-4"></i> Drive
-        </button>
-        <button onclick="openNew('https://www.youtube.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
-        </button>
-        <button onclick="openNew('https://maps.google.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="map-pin" class="w-4 h-4"></i> Maps
-        </button>
-        <button onclick="openNew('https://github.com/')" 
-                class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-          <i data-lucide="github" class="w-4 h-4"></i> GitHub
-        </button>
+  <!-- Filters -->
+  <section class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-8">
+    <div class="flex flex-wrap items-center gap-2">
+      <button data-filter="all" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">All</button>
+      <button data-filter="google" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">Google</button>
+      <button data-filter="work" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">Work</button>
+      <button data-filter="study" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">Study</button>
+      <button data-filter="media" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">Media</button>
+      <button data-filter="tools" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">Tools</button>
+      <button data-filter="india" class="filter-btn glass px-3 py-1.5 rounded-lg text-sm">India</button>
+    </div>
+  </section>
 
-    <button onclick="openNew('https://www.pinterest.com/')" 
-            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-      <i data-lucide="image" class="w-4 h-4"></i> Pinterest
-    </button>
-    <button onclick="openNew('https://outlook.live.com/')" 
-            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-      <i data-lucide="inbox" class="w-4 h-4"></i> Outlook
-    </button>
-    <button onclick="openNew('https://onedrive.live.com/')" 
-        class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="cloud" class="w-4 h-4"></i> OneDrive
-</button>
-    <button onclick="openNew('https://chat.openai.com/')" 
-            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-      <i data-lucide="message-square" class="w-4 h-4"></i> ChatGPT
-    </button>
-    <button onclick="openNew('https://copilot.microsoft.com/')" 
-            class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-      <i data-lucide="sparkles" class="w-4 h-4"></i> Copilot
-    </button>
+  <!-- Quick Links Grid -->
+  <section class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-4 mb-8">
+    <div id="appGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
+  </section>
 
-      <!-- PW -->
-<button onclick="openNew('https://www.pw.live/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="book-open" class="w-4 h-4"></i> PW
-</button>
-
-<!-- Perplexity -->
-<button onclick="openNew('https://www.perplexity.ai/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="bot" class="w-4 h-4"></i> Perplexity
-</button>
-
-<!-- eKalyan -->
-<button onclick="openNew('https://ekalyan.cgg.gov.in/studentLogin.do?studLoginType=pms')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="graduation-cap" class="w-4 h-4"></i> eKalyan
-</button>
-
-<!-- SmallPDF -->
-<button onclick="openNew('https://smallpdf.com/#r=app')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="file-text" class="w-4 h-4"></i> SmallPDF
-</button>
-
-<!-- 10015.io -->
-<button onclick="openNew('https://10015.io/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="layers" class="w-4 h-4"></i> 10015.io
-</button>
-
-<!-- Pixabay -->
-<button onclick="openNew('https://pixabay.com/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="camera" class="w-4 h-4"></i> Pixabay
-</button>
-
-<!-- Survey of India -->
-<button onclick="openNew('https://surveyofindia.gov.in/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="map" class="w-4 h-4"></i> Survey of India
-</button>
-
-<!-- Indian Law System -->
-<button onclick="openNew('https://www.perplexity.ai/spaces/indian-law-system-WTpMpNwMQ3qwiEwuY6ThxA')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="gavel" class="w-4 h-4"></i> Indian Law
-</button>
-
-<!-- Google Scholar -->
-<button onclick="openNew('https://scholar.google.com/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="book" class="w-4 h-4"></i> Scholar
-</button>
-
-        <!-- MSN Watch -->
-<button onclick="openNew('https://www.msn.com/en-in/video?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=9')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="tv" class="w-4 h-4 text-indigo-600"></i> Watch
-</button>
-
-<!-- MSN Weather -->
-<button onclick="openNew('https://www.msn.com/en-in/weather/forecast/in-Hazaribag,Jharkhand?ocid=edgntpruby&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="cloud-sun" class="w-4 h-4 text-sky-500"></i> Weather
-</button>
-
-<!-- MSN Finance -->
-<button onclick="openNew('https://www.msn.com/en-in/money?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=11&id=ahkucw')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="dollar-sign" class="w-4 h-4 text-green-700"></i> Finance
-</button>
-
-<!-- MSN Games -->
-<button onclick="openNew('https://www.msn.com/en-in/play?ocid=edgntpruby&pc=W091&cvid=68a56301ed754fa999cd6d0c085e96e3&uxmode=ruby&ei=12')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="gamepad-2" class="w-4 h-4 text-orange-600"></i> MSN Games
-</button>
-
-<!-- Poki -->
-<button onclick="openNew('https://poki.com/')" 
-  class="h-11 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 active:scale-95 transition">
-  <i data-lucide="gamepad" class="w-4 h-4 text-purple-600"></i> Poki
-</button>
-
-
-
+  <!-- Footer -->
+  <footer class="mt-auto w-full">
+    <div class="glass border-t">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 text-center text-sm text-[var(--muted)]">
+         <a href="time.php" class="nav-link">&copy; <span id="year"></span> QuickHub. Built with ❤️ by Vishal</a>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-center text-xs text-slate-400 pt-6">
-      <p>Made with ♥ | Save as a PWA for 1-tap browser speed dial.</p>
-    </footer>
-  </div>
+  </footer>
 
   <script>
+    // Icons
     lucide.createIcons();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    function openNew(url) {
-      window.open(url, "_blank", "noopener,noreferrer");
+    // Open in new tab
+    function openNew(url) { window.open(url, "_blank", "noopener,noreferrer"); }
+
+    // Search
+    function engineUrl(engine, q, lucky=false) {
+      if (engine === 'google') return lucky
+        ? `https://www.google.com/search?q=${encodeURIComponent(q)}&btnI=1`
+        : `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+      if (engine === 'bing') return `https://www.bing.com/search?q=${encodeURIComponent(q)}`;
+      if (engine === 'youtube') return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
+      if (engine === 'wikipedia') return `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(q)}`;
+      return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
     }
 
-    function handleGoogleSearch() {
-      const query = document.getElementById("searchInput").value.trim();
-      if (query) openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
+    function doSearch(lucky=false) {
+      const q = document.getElementById('searchInput').value.trim();
+      if (!q) return;
+      const engine = document.getElementById('engine').value;
+      openNew(engineUrl(engine, q, lucky));
     }
-    
-    function handleLucky() {
-  const query = document.getElementById("googleSearch").value.trim();
-  if (query) {
-    openNew(`https://www.google.com/search?q=${encodeURIComponent(query)}&sourceid=navclient&btnI=1`);
-  }
-}
 
+    document.getElementById('searchBtn').addEventListener('click', () => doSearch(false));
+    document.getElementById('luckyBtn').addEventListener('click', () => doSearch(true));
+    document.getElementById('searchInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(false); }
+    });
 
+    // Shortcuts
+    window.addEventListener('keydown', (e) => {
+      const k = e.key.toLowerCase();
+      if (k === 's' || k === '/') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+      if (k === 'g') openNew('https://mail.google.com/');
+      if (k === 'y') openNew('https://www.youtube.com/');
+      if (k === 'm') openNew('https://maps.google.com/');
+      if (k === 'p') openNew('https://www.pw.live/study/batches/study?child_url=%2Fstudy');
+    });
+
+    // Image search by URL
     function handleImageByUrl() {
       const url = document.getElementById("imgUrlInput").value.trim();
       if (url) openNew(`https://lens.google.com/uploadbyurl?url=${encodeURIComponent(url)}`);
     }
+    window.handleImageByUrl = handleImageByUrl;
+    window.openNew = openNew;
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key.toLowerCase() === "s") {
-        e.preventDefault();
-        document.getElementById("searchInput").focus();
-      }
+    // Quick links dataset
+    const links = [
+      // Google
+      { id:'gmail',     name:'Gmail',     url:'https://mail.google.com/', icon:'mail',        cat:'google' },
+      { id:'google',    name:'Google',    url:'https://www.google.com/',  icon:'search',      cat:'google' },
+      { id:'drive',     name:'Drive',     url:'https://drive.google.com/',icon:'hard-drive',  cat:'google' },
+      { id:'maps',      name:'Maps',      url:'https://maps.google.com/', icon:'map-pin',     cat:'google' },
+      { id:'scholar',   name:'Scholar',   url:'https://scholar.google.com/', icon:'book-open',cat:'study'  },
+      { id:'pw',   name:'PW',   url:'https://www.pw.live/study/batches/study?child_url=%2Fstudy', icon:'book',cat:'study'  },
+      { id:'youtube',   name:'YouTube',   url:'https://www.youtube.com/', icon:'youtube',     cat:'media'  },
+      { id:'un',   name:'United Nation',   url:'https://www.un.org/en', icon:'globe',     cat:'media'  },
+
+      // Microsoft
+      { id:'outlook',   name:'Outlook',   url:'https://outlook.live.com/', icon:'inbox',      cat:'work'   },
+      { id:'onedrive',  name:'OneDrive',  url:'https://onedrive.live.com/', icon:'cloud',     cat:'work'   },
+
+      // Dev/Work
+      { id:'github',    name:'GitHub',    url:'https://github.com/',       icon:'github',     cat:'work'   },
+      { id:'perplexity',name:'Perplexity',url:'https://www.perplexity.ai/', icon:'bot',       cat:'work'   },
+      { id:'smallpdf',  name:'SmallPDF',  url:'https://smallpdf.com/',     icon:'file-text',  cat:'tools'  },
+      { id:'10015',     name:'10015.io',  url:'https://10015.io/',         icon:'wrench',     cat:'tools'  },
+
+      // Media/Creative
+      { id:'pinterest', name:'Pinterest', url:'https://www.pinterest.com/',icon:'image',      cat:'media'  },
+      { id:'pixabay',   name:'Pixabay',   url:'https://pixabay.com/',      icon:'images',     cat:'media'  },
+
+      // AI
+      { id:'chatgpt',   name:'ChatGPT',   url:'https://chat.openai.com/',  icon:'message-square', cat:'work' },
+      { id:'copilot',   name:'Copilot',   url:'https://copilot.microsoft.com/', icon:'sparkles', cat:'work' },
+      { id:'ck12',   name:'CK-12',   url:'https://www.ck12.org/student/', icon:'presentation', cat:'study' },
+      { id:'khanacedemy',   name:'Khanacedemy',   url:'https://www.khanacademy.org/', icon:'book-open-check', cat:'study' },
+
+      // India / Gov
+      { id:'ekalyan',   name:'eKalyan',   url:'https://ekalyan.bih.nic.in/', icon:'building', cat:'india' },
+      { id:'soi',       name:'Survey of India', url:'https://www.surveyofindia.gov.in/', icon:'map', cat:'india' },
+      { id:'indianlaw', name:'Indian Law', url:'https://legislative.gov.in/', icon:'scale',   cat:'india' },
+
+      // Utilities
+      { id:'weather',   name:'Weather',   url:'https://www.google.com/search?q=weather', icon:'cloud-sun', cat:'tools' },
+      { id:'finance',   name:'Finance',   url:'https://www.google.com/finance/', icon:'wallet', cat:'tools' },
+      { id:'watch',     name:'Watch',     url:'https://time.is/', icon:'clock', cat:'tools' },
+      { id:'msn-games', name:'MSN Games', url:'https://www.msn.com/en-in/play', icon:'gamepad-2', cat:'media' },
+      { id:'poki',      name:'Poki',      url:'https://poki.com/', icon:'gamepad', cat:'media' },
+    ];
+
+    // Render quick links with filters
+    const appGrid = document.getElementById('appGrid');
+    function linkCard(item) {
+      return `
+        <button onclick="openNew('${item.url}')" class="glass rounded-xl p-3 card text-left w-full">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+              <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium">${item.name}</div>
+              <div class="text-xs text-[var(--muted)]">${item.cat}</div>
+            </div>
+          </div>
+        </button>
+      `;
+    }
+    function renderGrid(filter='all') {
+      const items = links.filter(x => filter === 'all' ? true : x.cat === filter)
+                         .sort((a,b) => a.name.localeCompare(b.name));
+      appGrid.innerHTML = items.map(linkCard).join('');
+      lucide.createIcons();
+    }
+    renderGrid('all');
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = btn.getAttribute('data-filter');
+        renderGrid(f);
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('ring-2','ring-indigo-400'));
+        btn.classList.add('ring-2','ring-indigo-400');
+      });
     });
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('ring-2','ring-indigo-400');
   </script>
 </body>
 </html>
